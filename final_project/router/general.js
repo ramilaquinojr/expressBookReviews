@@ -47,7 +47,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
   })
   .then(result => {
     let isbn = req.params.isbn;
-    res.send(books[isbn]);
+    res.send(result[isbn]);
   })
   .catch(error => {
     res.status(500).json({ message: error });
@@ -65,7 +65,7 @@ public_users.get('/author/:author',function (req, res) {
   })
   .then(result => {
     let author = req.params.author.toLowerCase();
-    let filtered = Object.values(books).filter(book => 
+    let filtered = Object.values(result).filter(book => 
       book.author.toLowerCase() === author
     );
     res.send(JSON.stringify(filtered, null, 4));
@@ -86,7 +86,7 @@ public_users.get('/title/:title',function (req, res) {
   })
   .then(result => {
     let title = req.params.title.toLowerCase();
-    let filtered = Object.values(books).filter(book => 
+    let filtered = Object.values(result).filter(book => 
       book.title.toLowerCase() === title
     );
     res.send(JSON.stringify(filtered, null, 4));
